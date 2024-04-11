@@ -1,3 +1,4 @@
-Implementation of the publication of # VisionaryVR 
+Implementation of the publication of
+# VisionaryVR 
 
 
