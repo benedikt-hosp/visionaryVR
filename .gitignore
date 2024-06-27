@@ -74,4 +74,4 @@ crashlytics-build.properties
 
 # Too big for github desktop
 
-/[Aa]ssets/OpenCVForUnity
+/[Aa]ssets/OpenCVForUnity/
