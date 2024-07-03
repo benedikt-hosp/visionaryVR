@@ -1,0 +1,60 @@
+{
+   "title":" NASA Task Load Index",
+   "instructions":"Please answer the following questions about your demands from the prior experience:",
+   "code":"",
+   "questions":[
+      {
+            "questiontype": "slider",
+            "instructions": "Mental Demand: How <b>mentally demanding</b> was the task?",
+            "id": "tlx_MentalDemand",
+            "left": "Very Low",
+            "right": "Very High",
+            "tick_count": 101
+      },
+
+            {
+            "questiontype": "slider",
+            "instructions": "Physical Demand: How <b>physically demanding</b> was the task?",
+            "id": "tlx_PhysicalDemand",
+            "left": "Very Low",
+            "right": "Very High",
+            "tick_count": 101
+      },
+
+            {
+            "questiontype": "slider",
+            "instructions": "Teporal Demand: How <b>hurried or rushed was the pace</b> of the task?",
+            "id": "tlx_TemporalDemand",
+            "left": "Very Low",
+            "right": "Very High",
+            "tick_count": 101
+      },
+
+    {
+      "questiontype": "slider",
+      "instructions": "Performance: How successful were you in accomplishing what you were asked to do?",
+      "id": "tlx_Performance",
+      "left": "Perfect",
+      "right": "Failure",
+      "tick_count": 101
+    },
+
+    {
+      "questiontype": "slider",
+      "instructions": "Effort: How hard did you have to work to accomplish your level of performance?",
+      "id": "tlx_Effort",
+      "left": "Very Low",
+      "right": "Very High",
+      "tick_count": 101
+    },
+
+    {
+      "questiontype": "slider",
+      "instructions": "Frustration: How insecure, discouraged, irritated, stressed, and annoyed were you?",
+      "id": "tlx_Frustration",
+      "left": "Very Low",
+      "right": "Very High",
+      "tick_count": 101
+    }
+   ]
+}

@@ -1,0 +1,7 @@
+PlayerName;QuestionName;Value
+1375;tlx_MentalDemand;60
+1375;tlx_PhysicalDemand;50
+1375;tlx_TemporalDemand;50
+1375;tlx_Performance;50
+1375;tlx_Effort;50
+1375;tlx_Frustration;50

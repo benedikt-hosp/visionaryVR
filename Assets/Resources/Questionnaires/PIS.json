@@ -1,0 +1,90 @@
+{
+   "title":"Player identification Scale",
+   "instructions":"Please indicate on a scale from 1 (Strongly Disagree) to 5 (Strongly Agree) how much you agree with the following statements:",
+   "code":"",
+   "questions":[
+      {
+         "questiontype":"radiogrid",
+         "id":"PIS",
+         "shuffle": "true",
+         "labels":[
+            "Strongly Disagree",
+            "Disagree",
+            "Undecided",
+            "Agree",
+            "Strongly Agree"
+         ],
+         "q_text":[
+            {
+               "id":"PIS_similar_1_1",
+               "text":"My character is similar to me."
+            },
+            {
+               "id":"PIS_similar_1_2",
+               "text":"I resemble my character."
+            },
+            {
+               "id":"PIS_similar_1_3",
+               "text":"My character resembles me."
+            },
+            {
+               "id":"PIS_similar_1_4",
+               "text":"I identify with my character."
+            },
+            {
+               "id":"PIS_similar_1_5",
+               "text":"My character is like me in many ways."
+            },
+            {
+               "id":"PIS_similar_1_6",
+               "text":"My character is an extension of myself."
+            },
+            
+            {
+               "id":"PIS_EmbodiedIdentification_2_1",
+               "text":"In the game, it is as if I become one with my character."
+            },
+            {
+               "id":"PIS_EmbodiedIdentification_2_2",
+               "text":"I feel like I am inside my character when playing."
+            },
+            {
+               "id":"PIS_EmbodiedIdentification_2_3",
+               "text":"When I am playing, it feels as if I am my character."
+            },
+            {
+               "id":"PIS_EmbodiedIdentification_2_4",
+               "text":"When I am playing I am transported into my character."
+            },
+            {
+               "id":"PIS_EmbodiedIdentification_2_5",
+               "text":"When playing, it feels as if my character’s body becomes my own."
+            },
+            {
+               "id":"PIS_EmbodiedIdentification_2_6",
+               "text":"In the game, it is as if I act directly through my character."
+            },
+            {
+               "id":"PIS_Wishful_Identification_3_1",
+               "text":"I would like to be more like my character."
+            },
+            {
+               "id":"PIS_Wishful_Identification_3_2",
+               "text":"If I could become like my character, I would."
+            },
+            {
+               "id":"PIS_Wishful_Identification_3_3",
+               "text":"My character is an example to me."
+            },
+            {
+               "id":"PIS_Wishful_Identification_3_4",
+               "text":"My character is a better me."
+            },
+            {
+               "id":"PIS_Wishful_Identification_3_5",
+               "text":"My character has characteristics that I would like to have."
+            }
+         ]
+      }
+   ]
+}

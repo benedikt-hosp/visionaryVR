@@ -1,0 +1,26 @@
+
+- Condition 3: Ausgabe testen
+
+- Repetitions einbauen
+- Positionen variation einbauen
+- Tutorials für jede Condition
+
+
+
+Einstellungen:
+1. Unity Scene beinhaltet KEIN SteamVR prefab. Nur xtal prefabs laden
+2. XTAL ist auf XTAL Native gestellt
+3. Unity XR einstellungen alles aus!
+4. SteamVR starten und controller pairen. ( einmal wenn der rechner hochgefahren wird)
+5 VRG add on in steamVR muss AUS sein, da sonst SteamVR XTAL als brille erkennt 
+
+
+Bereits bearbeitet:
+====================================================done
+
+- Condition Gaze schreibt Gaze nicht ins file (nur Gaze alle anderen machen es richtig, vll weil die queue leer ist?)
+done: auf event based geändert odass nicht voneinander wegfrisst
+
+
+- Rekalibrierung nicht möglich (ET Thread muss deaktiviert sein) 
+	+ STOP ALL Running PRocedures as long as calibration is running
