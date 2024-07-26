@@ -17,7 +17,7 @@ public static class XRDisplaySubSystemHelper
         }
 
         DisplaySystems.Clear();
-        SubsystemManager.GetInstances(DisplaySystems);
+        SubsystemManager.GetSubsystems(DisplaySystems);
         _activeDisplaySystem = displaySubsystem = DisplaySystems.FirstOrDefault(x => x.running);
         
         return _activeDisplaySystem != null;

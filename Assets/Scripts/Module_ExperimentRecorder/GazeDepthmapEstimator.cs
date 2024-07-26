@@ -1,8 +1,8 @@
 ﻿using UnityEngine;
-using OpenCVForUnity;
-using OpenCVForUnity.CoreModule;
-using OpenCVForUnity.UnityUtils;
-using OpenCVForUnity.ImgprocModule;
+//using OpenCVForUnity;
+//using OpenCVForUnity.CoreModule;
+//using OpenCVForUnity.UnityUtils;
+//using OpenCVForUnity.ImgprocModule;
 using System.Collections.Generic;
 using System.Collections;
 using System.Collections.Concurrent;
@@ -10,7 +10,7 @@ using Source.ExperimentManagement.Management;
 
 public class GazeDepthmapEstimator
 {
-
+    /*
     List<double> estimatedDepths;
     Scalar mean;
     List<Scalar> allMeans;
@@ -270,5 +270,5 @@ public class GazeDepthmapEstimator
         Utils.matToTexture2D(imgMat, texture);
 
         return texture;
-    }
+    }*/
 }

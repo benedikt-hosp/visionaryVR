@@ -27,8 +27,8 @@ public class Autofocal_Controller
     // attach to main camera
     public Autofocal_Controller()
     {
-        //leftEye = GameObject.Find("Left Eye");
-        leftEye = VrgHmd.mainCameraRig.leftGO;
+        leftEye = GameObject.Find("Left Eye");
+        //leftEye = VrgHmd.mainCameraRig.leftGO;
         focusControllerL = leftEye.GetComponent<Defocus>();
 
 
@@ -41,8 +41,8 @@ public class Autofocal_Controller
         focusControllerL.defocusShader = Shader.Find("Hidden/Defocus");
 
 
-        //rightEye = GameObject.Find("Right Eye");
-        rightEye = VrgHmd.mainCameraRig.rightGO;
+        rightEye = GameObject.Find("Right Eye");
+        //rightEye = VrgHmd.mainCameraRig.rightGO;
         focusControllerR = rightEye.GetComponent<Defocus>();
 
 

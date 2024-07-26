@@ -7,13 +7,13 @@ using System.Linq;
 using System.Threading;
 using UnityEditor;
 using UnityEditor.Media;
-using OpenCVForUnity.VideoioModule;
-using OpenCVForUnity.CoreModule;
-using OpenCVForUnity.UtilsModule;
-using OpenCVForUnity.ImgcodecsModule;
+//using OpenCVForUnity.VideoioModule;
+//using OpenCVForUnity.CoreModule;
+//using OpenCVForUnity.UtilsModule;
+//using OpenCVForUnity.ImgcodecsModule;
 
 using Debug = UnityEngine.Debug;
-using OpenCVForUnity.UnityUtils;
+//using OpenCVForUnity.UnityUtils;
 using System.Collections.Concurrent;
 using Source.ExperimentManagement.Management;
 
@@ -21,7 +21,7 @@ public class SaveThreadObject
 {
     //public int scalefactorRGB = 1;
     //public int scalefactorDEPTH = 1;
-
+/*
     public bool depth = true;
     public bool isRunning = false;
     public VideoWriter videoWriter;
@@ -138,7 +138,7 @@ public class SaveThreadObject
 
 
 
-    }
+    }*/
 
 }
 

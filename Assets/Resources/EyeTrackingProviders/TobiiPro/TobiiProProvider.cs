@@ -65,6 +65,18 @@ public class TobiiProProvider : EyeTrackingProviderInterface
         }
        
     }
+
+
+    public IEnumerator ProcessEyeDataCoroutine()
+    {
+        Debug.LogError("Dequeued outside");
+
+        while (true)
+        {
+          
+            yield return null;
+        }
+    }
     public void clearQueue()
     {
         // clear queue
@@ -137,11 +149,12 @@ public class TobiiProProvider : EyeTrackingProviderInterface
             //var data = this._eyeTracker.LatestGazeData;       // always null
             //var data = this._eyeTracker.LatestProcessedGazeData; // always null
 
+            /*
             if (data != default(IVRGazeData) && data != null)
             {
-                this._sampleData.timeStamp = GetCurrentSystemTimestamp();
+                this._sampleData.systemTimeStamp = GetCurrentSystemTimestamp();
                 this._sampleData.deviceTimestamp = data.OriginalGaze.DeviceTimeStamp;                 // long to float
-                this._sampleData.vergenceDepth = 20.0f;
+                this._sampleData.combinedEyeConvergenceDistance = -1.0f;
 
                 // Both
                 if (data.Right.GazeRayWorldValid && data.Left.GazeRayWorldValid)
@@ -170,14 +183,14 @@ public class TobiiProProvider : EyeTrackingProviderInterface
 
                 }
             }
-
+            
 
                 NewGazesampleReady?.Invoke(this._sampleData);
 
                 if (queueGazeSignal)
                     gazeQueue.Enqueue(this._sampleData);
-
-                yield return null;
+            */
+            yield return null;
 
                 if (!isHarvestingGaze)
                     break;

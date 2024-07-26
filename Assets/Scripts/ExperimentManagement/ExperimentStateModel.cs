@@ -69,62 +69,25 @@ namespace Source.ExperimentManagement
             OnOnModelChanged();
         }
 
-        public void UpdateUserFolder()
+       public string GetUserAge()
+       { return _userAge; }
+
+        public string GetGender()
+            { return _gender; }
+
+        public string GetVREX()
+            { return _vrEx; }
+
+        public string GetETEx()
+            { return _etEx; }
+
+        public latinsquaregroups GetLatinsquaregroup()
         {
-          
-            userFolder = createUserFolder(_userId);
-
-            OnOnModelChanged();
-
+            return _selectedLatinGroupId;
         }
 
-        private string createUserFolder(string userID)
-        {
-            string oldName;
-            string userFolder;
-            int fileCounter = 1;
-            userFolder = "D:\\SFB_Subjects\\" + userID;
 
-            oldName = userFolder;
-
-            while (Directory.Exists(userFolder))
-            {
-                userFolder = oldName + fileCounter.ToString();
-                fileCounter += 1;
-            }
-
-            Directory.CreateDirectory(userFolder);
-
-            // Add BaselineFolder, Condition 1, Condition 2, Condition 3, and Condition 4 folders
-            string baselineF = userFolder + "/Baseline/";
-            if (!Directory.Exists(baselineF))
-                Directory.CreateDirectory(baselineF);
-
-            string con1F = userFolder + "/Manual/";
-            if (!Directory.Exists(con1F))
-                Directory.CreateDirectory(con1F);
-
-            string con2F = userFolder + "/Gaze/";
-            if (!Directory.Exists(con2F))
-                Directory.CreateDirectory(con2F);
-
-            string con3F = userFolder + "/Vergence/";
-            if (!Directory.Exists(con3F))
-                Directory.CreateDirectory(con3F);
-
-
-
-            var userFilePath = userFolder + "/" + userID+".txt";
-            using (StreamWriter sw = File.AppendText(userFilePath))
-            {
-                sw.WriteLine("Name\tAge\tGender\tGroupID\tET-Experience?\tVR-Experience?");
-                sw.Flush();
-                sw.WriteLine(userID + "\t" + _userAge + "\t" + _gender + "\t" + _selectedLatinGroupId.ToString() + "\t" + _etEx + "\t" + _vrEx);
-                sw.Flush();
-            }
-
-            return userFolder;
-        }
+       
 
         public string GetUserFolder()
         {

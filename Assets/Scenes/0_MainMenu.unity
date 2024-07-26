@@ -13,7 +13,7 @@ OcclusionCullingSettings:
 --- !u!104 &2
 RenderSettings:
   m_ObjectHideFlags: 0
-  serializedVersion: 9
+  serializedVersion: 10
   m_Fog: 0
   m_FogColor: {r: 0.5, g: 0.5, b: 0.5, a: 1}
   m_FogMode: 3
@@ -43,7 +43,6 @@ RenderSettings:
 LightmapSettings:
   m_ObjectHideFlags: 0
   serializedVersion: 12
-  m_GIWorkflowMode: 1
   m_GISettings:
     serializedVersion: 2
     m_BounceScale: 1
@@ -66,9 +65,6 @@ LightmapSettings:
     m_LightmapParameters: {fileID: 0}
     m_LightmapsBakeMode: 1
     m_TextureCompression: 1
-    m_FinalGather: 0
-    m_FinalGatherFiltering: 1
-    m_FinalGatherRayCount: 256
     m_ReflectionCompression: 2
     m_MixedBakeMode: 2
     m_BakeBackend: 1
@@ -96,7 +92,7 @@ LightmapSettings:
     m_ExportTrainingData: 0
     m_TrainingDataDestination: TrainingData
     m_LightProbeSampleCountMultiplier: 4
-  m_LightingDataAsset: {fileID: 0}
+  m_LightingDataAsset: {fileID: 20201, guid: 0000000000000000f000000000000000, type: 0}
   m_LightingSettings: {fileID: 0}
 --- !u!196 &4
 NavMeshSettings:
@@ -3188,35 +3184,39 @@ PrefabInstance:
       value: ExperimentController
       objectReference: {fileID: 0}
     - target: {fileID: 8203363729236377387, guid: 17758df2f0fccf04ab2c6265cdf5a0a5, type: 3}
+      propertyPath: dataFolder
+      value: D:\SFB_Subjects\Userfolder
+      objectReference: {fileID: 0}
+    - target: {fileID: 8203363729236377387, guid: 17758df2f0fccf04ab2c6265cdf5a0a5, type: 3}
       propertyPath: vrProvider
       value: 1
       objectReference: {fileID: 0}
     - target: {fileID: 8203363729236377387, guid: 17758df2f0fccf04ab2c6265cdf5a0a5, type: 3}
       propertyPath: eyeTrackingProvider
-      value: 0
+      value: 1
       objectReference: {fileID: 0}
     - target: {fileID: 8203363729236377387, guid: 17758df2f0fccf04ab2c6265cdf5a0a5, type: 3}
       propertyPath: protocols.Array.size
       value: 3
       objectReference: {fileID: 0}
     - target: {fileID: 8203363729236377387, guid: 17758df2f0fccf04ab2c6265cdf5a0a5, type: 3}
-      propertyPath: protocols.Array.data[0]
+      propertyPath: 'protocols.Array.data[0]'
       value: 
       objectReference: {fileID: 11400000, guid: 4411f3b6831bfc84c9d8228fe88b3feb, type: 2}
     - target: {fileID: 8203363729236377387, guid: 17758df2f0fccf04ab2c6265cdf5a0a5, type: 3}
-      propertyPath: protocols.Array.data[1]
+      propertyPath: 'protocols.Array.data[1]'
       value: 
       objectReference: {fileID: 11400000, guid: cf666126d03898c4d8ed49d24747f3b8, type: 2}
     - target: {fileID: 8203363729236377387, guid: 17758df2f0fccf04ab2c6265cdf5a0a5, type: 3}
-      propertyPath: protocols.Array.data[2]
+      propertyPath: 'protocols.Array.data[2]'
       value: 
       objectReference: {fileID: 11400000, guid: f3877fdb3c226b3409cf35e3d8440ecc, type: 2}
     - target: {fileID: 8203363729236377387, guid: 17758df2f0fccf04ab2c6265cdf5a0a5, type: 3}
-      propertyPath: protocols.Array.data[3]
+      propertyPath: 'protocols.Array.data[3]'
       value: 
       objectReference: {fileID: 0}
     - target: {fileID: 8203363729236377387, guid: 17758df2f0fccf04ab2c6265cdf5a0a5, type: 3}
-      propertyPath: protocols.Array.data[4]
+      propertyPath: 'protocols.Array.data[4]'
       value: 
       objectReference: {fileID: 11400000, guid: 373b6d094250dde4f9a679814db17aad, type: 2}
     m_RemovedComponents: []
@@ -3737,6 +3737,53 @@ Transform:
   m_Children: []
   m_Father: {fileID: 0}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!1 &1603423615
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 1603423617}
+  - component: {fileID: 1603423616}
+  m_Layer: 0
+  m_Name: ZERO
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!114 &1603423616
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1603423615}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 10ee145b2c0ccbb4da418ad612909cb1, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  ceyeTrackingProvider: 1
+  dataFolder: D:/SFB_Subjects/
+  calibrated: 0
+--- !u!4 &1603423617
+Transform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1603423615}
+  serializedVersion: 2
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalPosition: {x: 0, y: 0, z: 0}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_ConstrainProportionsScale: 0
+  m_Children: []
+  m_Father: {fileID: 0}
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!1 &1703156929
 GameObject:
   m_ObjectHideFlags: 0
@@ -4193,9 +4240,8 @@ Light:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1921986724}
   m_Enabled: 1
-  serializedVersion: 10
+  serializedVersion: 11
   m_Type: 1
-  m_Shape: 0
   m_Color: {r: 1, g: 0.95686275, b: 0.8392157, a: 1}
   m_Intensity: 1
   m_Range: 10
@@ -4245,8 +4291,12 @@ Light:
   m_BoundingSphereOverride: {x: 0, y: 0, z: 0, w: 0}
   m_UseBoundingSphereOverride: 0
   m_UseViewFrustumForShadowCasterCull: 1
+  m_ForceVisible: 0
   m_ShadowRadius: 0
   m_ShadowAngle: 0
+  m_LightUnit: 1
+  m_LuxAtDistance: 1
+  m_EnableSpotReflector: 1
 --- !u!4 &1921986726
 Transform:
   m_ObjectHideFlags: 0
@@ -6853,3 +6903,4 @@ SceneRoots:
   - {fileID: 1155669229}
   - {fileID: 262384106}
   - {fileID: 1220984827}
+  - {fileID: 1603423617}

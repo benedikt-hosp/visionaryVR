@@ -2,6 +2,7 @@ using System;
 using System.Collections;
 using Source.DataInformation;
 using Unity.VisualScripting;
+using UnityEditor;
 using UnityEngine;
 using UnityEngine.Networking;
 using UnityEngine.SceneManagement;
@@ -33,9 +34,9 @@ namespace Source.ExperimentManagement
 
             public IDataWriting WritingInterface { get; private set; }
 
-            [Header("Choose ET-SDK")]     // do not need to set it dynamically
-            public Providers eyeTrackingProvider;
-            public string dataFolder = "D:\\SFB_Subjects\\Userfolder"; // is set by StateMainMenu
+            //[Header("Choose ET-SDK")]     // do not need to set it dynamically
+            //public Providers eyeTrackingProvider;
+            //public string dataFolder = "D:\\SFB_Subjects\\Userfolder"; // is set by StateMainMenu
             string lastState;
 
             public static ExperimentController Instance()
@@ -65,37 +66,11 @@ namespace Source.ExperimentManagement
                 // Create Writing Interface os ehte IDataWriting Interface to create custom writer
                 WritingInterface = new CSVWriter();
 
-
-                // SFB-RV: if we want to sepcify it specifically
-                //vrProvider = VRProdivers.XTAL;
-                //eyeTrackingProvider = Providers.XTAL;
-
-
-                _model.Zero = new ETController(eyeTrackingProvider);
-
-                // Only for XTAL
-                //_model.xtalControllerController = new XTAL_ControllerInput();
-
-
-                // Position the camera prefab
-                //GameObject cameraObject = GameObject.Find("CameraOrigin");          // XTAL
-                // UnityEngine.Object.DontDestroyOnLoad(cameraObject);
-
-
-
-                //cameraObject.transform.Rotate(new Vector3(0, 0, 0));
-                //cameraObject.transform.Translate(new Vector3(0f, 0f, 0f));
-
-                //var cams = cameraObject.GetComponentsInChildren<Camera>();
-                //for (int i = 0; i < cams.Length; i++)
-                //{
-                    //Debug.Log(cams[i].name);
-                 //   if (i == 0)
-                  //  {
-                  //      cams[i].tag = "MainCamera";
-                    //    cams[i].enabled = true;
-                   // }
-                //}
+                // ================== BEST LOCATION TO INITIALIZE ZERO
+                _model.Zero = GameObject.Find("ZERO").GetComponent<ETController>();
+                _model.Zero.InitController();
+                _model.Zero.UpdateUserFolder(_model.GetUserId(), _model.GetUserAge(), _model.GetGender(), _model.GetLatinsquaregroup(), _model.GetETEx(), _model.GetVREX());
+                DontDestroyOnLoad(GameObject.Find("ZERO"));
 
             }
 
@@ -118,27 +93,13 @@ namespace Source.ExperimentManagement
             private void Update()
             {
 
-                // WORKAROUND BECAUSE WE NEED STEAM VR AND HTC VIVE. Unity is taking
-                //rvCameratransform.localRotation = new Quaternion((rvCameratransform.rotation.x + 90), rvCameratransform.rotation.y, rvCameratransform.rotation.z, rvCameratransform.rotation.w);
-
+               
             }
 
             private void SceneManagerOnSceneLoaded(Scene arg0, LoadSceneMode arg1)
             {
-                if (_instController != null)
-                {
-                    //GameObject[] temp = GameObject.FindGameObjectsWithTag("GameController");
-
-                    //foreach (GameObject obj in temp)
-                    //{
-                    //    if (obj.GetComponent<ExperimentController>().Equals(this) == false)
-                    //    {
-                    //        Destroy(obj);
-                    //    }
-                    //}
-                }
-
-                _runningState = FindObjectOfType<ExperimentState>();
+                
+                _runningState = UnityEngine.Object.FindFirstObjectByType<ExperimentState>();
 
                 // We dont' have a model yet; Wait for the last call of the Loading function
                 if (_model != null)
@@ -157,6 +118,7 @@ namespace Source.ExperimentManagement
                 Debug.Log("Started next scene");
                 lastState = _model.GetCurrentSceneNameToLoad(); 
                 string sceneID = _model.GetNextSceneNameToLoad();
+                Debug.Log("Loading " + sceneID);
                 if (sceneID != "END")
                 {
                     _runningState?.EndState();
@@ -169,13 +131,17 @@ namespace Source.ExperimentManagement
                 }
                 else
                 {
-                    //StopExperimentOnWebsite();
+                    Debug.LogError("Reached final and will close app");
+                    // Stop experiment
                     _model.Zero.close();
                     _model.Zero = null;
-                    _model.xtalControllerController = null;
+#if UNITY_EDITOR
+                    EditorApplication.isPlaying = false;
+#else
+        Application.Quit();
+#endif
                     Destroy(this);
 
-                    Application.Quit();
                 }
 
             }
@@ -203,13 +169,6 @@ namespace Source.ExperimentManagement
 
 
             }
-
-            public void StopExperimentOnWebsite()
-            {
-                Debug.Log("End App");
-                //Application.ExternalCall("EndGame");
-            }
-
 
         }
     }

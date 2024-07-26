@@ -12,9 +12,9 @@ public class XTALProvider : EyeTrackingProviderInterface
 {
 
 
-    public static event OnCalibrationStarted OnCalibrationStartedEvent;
-    public static event OnCalibrationSucceeded OnCalibrationSucceededEvent;
-    public static event OnCalibrationFailed OnCalibrationFailedEvent;
+    public event OnCalibrationStarted OnCalibrationStartedEvent;
+    public event OnCalibrationSucceeded OnCalibrationSucceededEvent;
+    public event OnCalibrationFailed OnCalibrationFailedEvent;
 
     public event OnAutoIPDCalibrationStarted OnAutoIPDCalibrationStartedEvent;
     public event OnAutoIPDCalibrationSucceeded OnAutoIPDCalibrationSucceededEvent;
@@ -31,7 +31,8 @@ public class XTALProvider : EyeTrackingProviderInterface
     public List<SampleData> getCurrentSamples { get { return gazeSamplesOfCP; } }
     ConcurrentQueue<SampleData> gazeQueue;
     public List<SampleData> gazeSamplesOfCP;
-    public MonoBehaviour _mb = GameObject.FindObjectOfType<MonoBehaviour>();
+    public MonoBehaviour _mb = UnityEngine.Object.FindFirstObjectByType<MonoBehaviour>();
+
     // The surrogate MonoBehaviour that we'll use to manage this coroutine.
     SampleData _sampleData;
     public bool isQueueGazeSignal { get { return queueGazeSignal; } set { queueGazeSignal = value; } }
@@ -43,13 +44,23 @@ public class XTALProvider : EyeTrackingProviderInterface
     VrgHmd _eyeTracker;
     VRgEyeTrackingResult l;
     VRgEyeTrackingResult r;
+    public IEnumerator ProcessEyeDataCoroutine()
+    {
+        Debug.LogError("Dequeued outside");
 
+        while (true)
+        {
+
+            yield return null;
+        }
+    }
 
     public bool initializeDevice()
     {
         _sampleData = new SampleData();
         gazeQueue = new ConcurrentQueue<SampleData>();
-        this._mb = GameObject.FindObjectOfType<MonoBehaviour>();
+        this._mb = UnityEngine.Object.FindFirstObjectByType<MonoBehaviour>();
+
 
         this._eyeTracker = GameObject.Find("CameraOrigin").GetComponentInChildren<VrgHmd>();
 
@@ -119,7 +130,7 @@ public class XTALProvider : EyeTrackingProviderInterface
         {
             VRgEyeTrackingResult l;
             VRgEyeTrackingResult r;
-
+            /*
             this._sampleData = new SampleData();
 
             this._eyeTracker.GetEyeTrackingRays(out l, out r);
@@ -176,6 +187,8 @@ public class XTALProvider : EyeTrackingProviderInterface
 
             if(queueGazeSignal)
                 gazeQueue.Enqueue(this._sampleData);
+
+            */
             yield return null;
 
             if (!isHarvestingGaze)

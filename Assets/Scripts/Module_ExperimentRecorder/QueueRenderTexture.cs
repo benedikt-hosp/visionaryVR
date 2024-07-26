@@ -3,14 +3,14 @@ using UnityEngine;
 using Debug = UnityEngine.Debug;
 using System;
 using System.Collections;
-using OpenCVForUnity.UnityUtils;
-using OpenCVForUnity.CoreModule;
+//using OpenCVForUnity.UnityUtils;
+//using OpenCVForUnity.CoreModule;
 using System.Collections.Concurrent;
 using Source.ExperimentManagement.Management;
 
 public class QueueRenderTexture : MonoBehaviour
 {
-
+    /*
     public ConcurrentQueue<Mat> _queueDepth;
     public ConcurrentQueue<Mat> _queueRGB;
     private Material depthMaterial;
@@ -182,6 +182,7 @@ public class QueueRenderTexture : MonoBehaviour
 
 
     }
+    */
 
 }
 

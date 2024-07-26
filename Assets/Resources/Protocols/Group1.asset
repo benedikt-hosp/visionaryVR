@@ -15,21 +15,9 @@ MonoBehaviour:
   ProtocolName: Group1
   sceneCommands:
   - 0
-  - TLX
-  - 1
-  - 1
-  - 2
-  - TLX
-  - 3
-  - TLX
   - 0
+  - 1
   ScenesToLoad:
   - 0_MainMenu
-  - 03_Questionnaire
-  - 02_Experiment
   - 01_Base
   - 02_Experiment
-  - 03_Questionnaire
-  - 02_Experiment
-  - 03_Questionnaire
-  - 0_MainMenu

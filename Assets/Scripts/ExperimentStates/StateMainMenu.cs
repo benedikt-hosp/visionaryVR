@@ -72,7 +72,7 @@ namespace Source.ExperimentStates
         {
             if (_isConditionValid && _isUserIdValid)
             {
-                ExperimentController._model.UpdateUserFolder();
+                //ExperimentController._model.UpdateUserFolder();   // moved to ETController
 
                 ExperimentController.ChangeToNextStateOfExperiment();
             }
