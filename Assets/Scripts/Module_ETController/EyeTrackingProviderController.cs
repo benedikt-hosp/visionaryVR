@@ -130,33 +130,16 @@ public class EyeTrackingProviderController
     public void CalibrateEyeTracker()
     {
         Debug.Log("EyetrackingProviderController started ET calibration");
-        if (this.eyeTrackingProviderInterface != null)
-        {
-            //this.stop();
-            //this.eyeTrackingProviderInterface.stopETThread();
-            this.eyeTrackingProviderInterface.calibrateET();
-            //this.startETThread();
-        }
-        else
-        {
-            Debug.LogError("ETPC.eyeTrackingProviderInterface object is dead");
-        }
+        this.eyeTrackingProviderInterface?.calibrateET();
         
     }
     public void CalibratePositionAndIPD()
     {
         
-        //this.stop();
         Debug.Log("EyetrackingProviderController started IPD calibration");
-        if (this.eyeTrackingProviderInterface != null)
-        {
-            this.eyeTrackingProviderInterface.calibratePositionAndIPD();
-        }
-        else
-        {
-            Debug.LogError("ETPC.eyeTrackingProviderInterface object is dead");
-        }
-        //this.startETThread();
+        this.eyeTrackingProviderInterface?.calibratePositionAndIPD();
+            
+        
     }
 
 
@@ -164,36 +147,39 @@ public class EyeTrackingProviderController
 
     public void startETThread()
     {
-        this.eyeTrackingProviderInterface.startETThread();
+        this.eyeTrackingProviderInterface?.startETThread();
     }
 
     public void stop()
     {
-        this.eyeTrackingProviderInterface.stopETThread();
+        this.eyeTrackingProviderInterface?.stopETThread();
     }
 
     public void Close()
     {
-        this.eyeTrackingProviderInterface.close();
+        this.eyeTrackingProviderInterface?.close();
     }
 
 
     public bool SubscribeToGaze()
     {
+        bool registrered = false;
         //Debug.Log("Now registered");
-
-        bool registrered = this.eyeTrackingProviderInterface.subscribeToGazeData();
+        if (this.eyeTrackingProviderInterface != null)
+        { 
+            registrered = this.eyeTrackingProviderInterface.subscribeToGazeData();
+        }
         if (!registrered)
             Debug.LogError("Could not subscribe to gaze");
+
         return registrered;
             
     }
 
     public bool UnsubscribeToGaze()
     {
-        //Debug.LogError("Now registered");
-
-        bool registrered = this.eyeTrackingProviderInterface.UnsubscribeToGazeData();
+        var registrered = this.eyeTrackingProviderInterface?.UnsubscribeToGazeData() ?? false;
+        
         if (!registrered)
             Debug.LogError("Could not subscribe to gaze");
         return registrered;

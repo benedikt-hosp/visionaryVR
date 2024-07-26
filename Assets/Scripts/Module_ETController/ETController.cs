@@ -43,14 +43,19 @@ public class ETController: MonoBehaviour
     {
         Debug.LogError("InitController: Start");
         this.eyeTrackingProvider = ceyeTrackingProvider;
+
         Debug.LogError("InitController: Set Provider");
         this.loadETGameObjects();
-        Debug.LogError("InitController: Loaded Objects");
-        this.etpc = new EyeTrackingProviderController(this.eyeTrackingProvider);
-        Debug.LogError("InitController: Created provider controller");
-        StartCoroutine(this.etpc.eyeTrackingProviderInterface.ProcessEyeDataCoroutine());
-        Debug.LogError("InitController: started coroutine");
 
+        if (ceyeTrackingProvider != Providers.None)
+        {
+
+            Debug.LogError("InitController: Loaded Objects");
+            this.etpc = new EyeTrackingProviderController(this.eyeTrackingProvider);
+            Debug.LogError("InitController: Created provider controller");
+            StartCoroutine(this.etpc.eyeTrackingProviderInterface.ProcessEyeDataCoroutine());
+            Debug.LogError("InitController: started coroutine");
+        }
     }
 
 

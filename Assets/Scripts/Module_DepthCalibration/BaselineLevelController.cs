@@ -58,10 +58,13 @@ public class BaselineLevelController : ExperimentState
         this.etController = ExperimentController._model.Zero;
         userFolder = this.etController.GetUserFolder();
         Debug.LogError("User Folder inBaseline is " + userFolder);
-        this.gazeTracker = new GazeTracker(userFolder, this.etController.etpc.eyeTrackingProviderInterface, null, this);
-        this.gazeTracker.startGazeWriting();
-        isETReady = true;
-        OnActivateET();       
+        if(this.etController.ceyeTrackingProvider != Providers.None)
+        { 
+            this.gazeTracker = new GazeTracker(userFolder, this.etController.etpc.eyeTrackingProviderInterface, null, this);
+            this.gazeTracker.startGazeWriting();
+            isETReady = true;
+            OnActivateET();
+        }
 
     }
 

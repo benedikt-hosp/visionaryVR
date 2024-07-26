@@ -3766,7 +3766,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 10ee145b2c0ccbb4da418ad612909cb1, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  ceyeTrackingProvider: 1
+  ceyeTrackingProvider: 0
   dataFolder: D:/SFB_Subjects/
   calibrated: 0
 --- !u!4 &1603423617
