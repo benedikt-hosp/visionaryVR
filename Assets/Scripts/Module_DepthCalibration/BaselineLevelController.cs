@@ -58,8 +58,9 @@ public class BaselineLevelController : ExperimentState
         this.etController = ExperimentController._model.Zero;
         userFolder = this.etController.GetUserFolder();
         Debug.LogError("User Folder inBaseline is " + userFolder);
-        if(this.etController.ceyeTrackingProvider != Providers.None)
-        { 
+        if(this.etController.ChoseEyeTrackingProvider != Providers.None)
+        {
+            this.etController.etpc.eyeTrackingProviderInterface.NewGazesampleReady += ShowLiveGaze;
             this.gazeTracker = new GazeTracker(userFolder, this.etController.etpc.eyeTrackingProviderInterface, null, this);
             this.gazeTracker.startGazeWriting();
             isETReady = true;
@@ -67,6 +68,12 @@ public class BaselineLevelController : ExperimentState
         }
 
     }
+
+    private void ShowLiveGaze(SampleData sd)
+    {
+        Debug.Log("New sample received in Baseline scene. TO access it add your code to ShowLiveGaze Method");
+    }
+
 
 
 

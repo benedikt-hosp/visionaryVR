@@ -1,6 +1,7 @@
 using System.Collections;
 using System.Collections.Generic;
 using System.IO;
+using Unity.VisualScripting;
 using UnityEditor;
 using UnityEngine;
 using ViveSR.anipal.Eye;
@@ -14,12 +15,15 @@ public class ETController: MonoBehaviour
 
 
     [Header("Choose ET-SDK")]     // do not need to set it dynamically
-    public Providers ceyeTrackingProvider;
+    public Providers ChoseEyeTrackingProvider;
     public string dataFolder = "D:\\SFB_Subjects\\Userfolder"; // is set by StateMainMenu
+    [Header("To start Eye-Tracking Calibration, press 'c' on the keyboard anytime.")]
+    [Header("To get LiveGaze listen to NewGazeSamples-Event from ETController.")]
 
+    [TextArea][SerializeField] private string note = "This is a note.";
 
     // EyeTracking Controller
-    public bool calibrated = false;
+    private bool calibrated = false;
     public EyeTrackingProviderController etpc;
     public GazeTracker eventTracker;
     private Providers eyeTrackingProvider;
@@ -42,12 +46,12 @@ public class ETController: MonoBehaviour
     public void InitController()
     {
         Debug.LogError("InitController: Start");
-        this.eyeTrackingProvider = ceyeTrackingProvider;
+        this.eyeTrackingProvider = ChoseEyeTrackingProvider;
 
         Debug.LogError("InitController: Set Provider");
         this.loadETGameObjects();
 
-        if (ceyeTrackingProvider != Providers.None)
+        if (ChoseEyeTrackingProvider != Providers.None)
         {
 
             Debug.LogError("InitController: Loaded Objects");

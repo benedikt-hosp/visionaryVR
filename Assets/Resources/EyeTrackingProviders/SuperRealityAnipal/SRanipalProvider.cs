@@ -15,6 +15,7 @@ public class SRanipalProvider : MonoBehaviour, EyeTrackingProviderInterface
     private static SRanipalProvider instance;
 
     public event NewGazeSampleReady NewGazesampleReady;
+    public static event NewGazeSampleReady NewGazesampleReady_Static;
     public event OnCalibrationStarted OnCalibrationStartedEvent;
     public event OnCalibrationSucceeded OnCalibrationSucceededEvent;
     public event OnCalibrationFailed OnCalibrationFailedEvent;
@@ -127,8 +128,103 @@ public class SRanipalProvider : MonoBehaviour, EyeTrackingProviderInterface
     {
         Debug.LogError("Callback got new samples");
         eyeDataQueue.Enqueue(eye_data);
+        ProcessEyeData_static(eye_data);
     }
 
+
+    private static void ProcessEyeData_static(EyeData_v2 data)
+    {
+        EyeData_v2 eyeData_v2 = data;
+        _sampleData = new SampleData
+        {
+            systemTimeStamp = DateTimeOffset.Now.ToUnixTimeMilliseconds(),
+            deviceTimestamp = eyeData_v2.timestamp,
+            frameSequence = eyeData_v2.frame_sequence,
+
+            // Left Eye Data
+            //leftEyeValidityVector = GetValidityVector(eyeData_v2.verbose_data.left),
+            //leftEyeIsValid = IsAllOnes(GetValidityVector(eyeData_v2.verbose_data.left)),
+            leftEyeLocalOrigin = new Vector3(-1 * eyeData_v2.verbose_data.left.gaze_origin_mm.x,
+                                            eyeData_v2.verbose_data.left.gaze_origin_mm.y,
+                                            eyeData_v2.verbose_data.left.gaze_origin_mm.z
+                                            ),
+
+            // leftEyeLocalDirection = eyeData_v2.verbose_data.left.gaze_direction_normalized,
+            leftEyeLocalDirection = new Vector3(
+                                            -1 * eyeData_v2.verbose_data.left.gaze_direction_normalized.x,
+                                            eyeData_v2.verbose_data.left.gaze_direction_normalized.y,
+                                            eyeData_v2.verbose_data.left.gaze_direction_normalized.z
+                                            ),
+
+            leftEyeWorldOrigin = Camera.main.transform.TransformPoint(eyeData_v2.verbose_data.left.gaze_origin_mm),
+            leftEyeWorldDirection = Camera.main.transform.TransformDirection(eyeData_v2.verbose_data.left.gaze_direction_normalized),
+
+
+            leftEyeOpenness = eyeData_v2.verbose_data.left.eye_openness,
+            leftEyePupilDiameter = eyeData_v2.verbose_data.left.pupil_diameter_mm,
+            leftEyeWide = eyeData_v2.expression_data.left.eye_wide,
+            leftEyeSqueeze = eyeData_v2.expression_data.left.eye_squeeze,
+            leftEyeFrown = eyeData_v2.expression_data.left.eye_frown,
+
+            // Right Eye Data
+            //rightEyeValidityVector = GetValidityVector(eyeData_v2.verbose_data.right),
+            //rightEyeIsValid = IsAllOnes(GetValidityVector(eyeData_v2.verbose_data.right)),
+
+            //rightEyeLocalOrigin = eyeData_v2.verbose_data.right.gaze_origin_mm,
+            //rightEyeLocalDirection = eyeData_v2.verbose_data.right.gaze_direction_normalized,
+
+            rightEyeLocalOrigin = new Vector3(-1 * eyeData_v2.verbose_data.right.gaze_origin_mm.x,
+                                        eyeData_v2.verbose_data.right.gaze_origin_mm.y,
+                                        eyeData_v2.verbose_data.right.gaze_origin_mm.z
+                                    ),
+            rightEyeLocalDirection = new Vector3(-1 * eyeData_v2.verbose_data.right.gaze_direction_normalized.x,
+                                        eyeData_v2.verbose_data.right.gaze_direction_normalized.y,
+                                        eyeData_v2.verbose_data.right.gaze_direction_normalized.z
+                                    ),
+
+
+            rightEyeWorldOrigin = Camera.main.transform.TransformPoint(eyeData_v2.verbose_data.right.gaze_origin_mm),
+            rightEyeWorldDirection = Camera.main.transform.TransformDirection(eyeData_v2.verbose_data.right.gaze_direction_normalized),
+
+            rightEyeOpenness = eyeData_v2.verbose_data.right.eye_openness,
+            rightEyePupilDiameter = eyeData_v2.verbose_data.right.pupil_diameter_mm,
+            rightEyeWide = eyeData_v2.expression_data.right.eye_wide,
+            rightEyeSqueeze = eyeData_v2.expression_data.right.eye_squeeze,
+            rightEyeFrown = eyeData_v2.expression_data.right.eye_frown,
+
+            // Combined Eye Data
+            //combinedEyeValidityVector = GetValidityVector(eyeData_v2.verbose_data.combined.eye_data),
+            //combinedEyeIsValid = IsAllOnes(GetValidityVector(eyeData_v2.verbose_data.combined.eye_data)),
+            //combinedLocalEyeOrigin = eyeData_v2.verbose_data.combined.eye_data.gaze_origin_mm,
+            //combinedLocalEyeDirection = eyeData_v2.verbose_data.combined.eye_data.gaze_direction_normalized,
+
+            combinedEyeLocalOrigin = new Vector3(-1 * eyeData_v2.verbose_data.combined.eye_data.gaze_origin_mm.x,
+                                            eyeData_v2.verbose_data.combined.eye_data.gaze_origin_mm.y,
+                                            eyeData_v2.verbose_data.combined.eye_data.gaze_origin_mm.z
+                                        ),
+            combinedEyeLocalDirection = new Vector3(-1 * eyeData_v2.verbose_data.combined.eye_data.gaze_direction_normalized.x,
+                                            eyeData_v2.verbose_data.combined.eye_data.gaze_direction_normalized.y,
+                                            eyeData_v2.verbose_data.combined.eye_data.gaze_direction_normalized.z
+                                        ),
+
+            combinedEyeWorldOrigin = Camera.main.transform.TransformPoint(eyeData_v2.verbose_data.combined.eye_data.gaze_origin_mm),
+            combinedEyeWorldDirection = Camera.main.transform.TransformDirection(eyeData_v2.verbose_data.combined.eye_data.gaze_direction_normalized),
+
+            combinedEyeOpenness = eyeData_v2.verbose_data.combined.eye_data.eye_openness,
+            combinedEyePupilDiameter = eyeData_v2.verbose_data.combined.eye_data.pupil_diameter_mm,
+            combinedEyeConvergenceValidity = eyeData_v2.verbose_data.combined.convergence_distance_validity,
+            combinedEyeConvergenceDistance = eyeData_v2.verbose_data.combined.convergence_distance_mm / 1000.0f,
+
+            // Tracking Improvements
+            trackingImprovements = eyeData_v2.verbose_data.tracking_improvements
+        };
+
+
+        Debug.Log($"Sample Rate in GetGaze: {StaticData.SampleRate}");
+        NewGazesampleReady_Static?.Invoke(_sampleData);
+
+        gazeQueue.Enqueue(_sampleData);
+    }
 
 
     public IEnumerator ProcessEyeDataCoroutine()
